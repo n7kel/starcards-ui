@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .bg-gradient-radial {
+    background: radial-gradient(var(--tw-gradient-stops));
+  }
+
+  .animate-gradient-shift {
+    background-size: 400% 400%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 6s ease-in-out infinite 2s;
+  }
+
+  .animate-float-slow {
+    animation: float 8s ease-in-out infinite 1s;
+  }
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+    opacity: 0.6;
+  }
+}
+
+/* Custom star shape for better definition */
+.star-shape {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  display: inline-block;
+}
+
+.star-shape:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ensure smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced backdrop blur support */
+@supports (backdrop-filter: blur(20px)) {
+  .backdrop-blur-xl {
+    backdrop-filter: blur(20px);
+  }
+  .backdrop-blur-md {
+    backdrop-filter: blur(12px);
+  }
+}
+
+/* Fallback for browsers without backdrop-filter */
+@supports not (backdrop-filter: blur(20px)) {
+  .backdrop-blur-xl {
+    background: rgba(255, 255, 255, 0.15);
+  }
+  .backdrop-blur-md {
+    background: rgba(255, 255, 255, 0.12);
+  }
+}
